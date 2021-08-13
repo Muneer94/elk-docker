@@ -1,6 +1,6 @@
 - name: Create elastic search volume
   docker_volume:
-    name: esdata_local
+    name: dataes
     driver: local
 
 - name: Start elastic search container
@@ -15,7 +15,7 @@
       # ELASTICSEARCH_USERNAME: "{{ es_user}}"
       ELASTICSEARCH_PASSWORD: "{{ elastic_password }}"
     volumes:
-    - "esdata:/usr/share/elasticsearch/data"
+    - "dataes:/usr/share/elasticsearch/data"
     ulimits:
     - nofile:65535:65535
     networks:
