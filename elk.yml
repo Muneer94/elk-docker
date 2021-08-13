@@ -1,0 +1,16 @@
+- hosts: server1
+  remote_user: muneer
+  become: yes
+  become_user: root
+  vars_files:
+    - "vars/all.yml"
+  roles:
+  - { role: docker, tags: ["docker"] }
+  - { role: elasticsearch, tags: ["elasticsearch"] }
+  - { role: kibana, tags: ["kibana"] }
+  - { role: logstash, tags: ["logstash"] }
+  - { role: heartbeat, tags: ["heartbeat"] }
+  - { role: filebeat, tags: ["filebeat"] }
+  - { role: metricbeat, tags: ["metricbeat"] }
+  - { role: nginx, tags: ["nginx"] }
+  - { role: heartbeat-watcher, tags: ["heartbeat-watcher"] }
