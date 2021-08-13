@@ -14,6 +14,8 @@
       xpack.monitoring.collection.enabled: "true"
       ELASTICSEARCH_USERNAME: "elastic"
       ELASTICSEARCH_PASSWORD: "{{ elastic_password }}"
+    ports: 
+    - '0.0.0.0:9200:9200'
     volumes:
     - "dataes:/usr/share/elasticsearch/data"
     ulimits:
