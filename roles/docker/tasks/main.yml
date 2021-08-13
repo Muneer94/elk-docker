@@ -1,5 +1,9 @@
 ---
 
+- name: Update apt packages
+  apt:
+    update_cache: yes
+
 - name: Docker is present
   apt:
     name: docker.io
