@@ -1,4 +1,15 @@
 ---
+
+- name: Docker is present
+  apt:
+    name: docker.io
+    state: present
+
+- name: Python3-docker is present
+  apt:
+    name: python3-docker
+    state: present
+
 - name: Ensure docker deamon is running
   service:
     name: docker
