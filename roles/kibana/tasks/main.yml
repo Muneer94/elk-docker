@@ -7,6 +7,8 @@
       ELASTICSEARCH_HOSTS: "http://{{ elasticsearch_hostname }}:9200"
       ELASTICSEARCH_USERNAME: "elastic"
       ELASTICSEARCH_PASSWORD: "{{ elastic_password }}"
+    ports: 
+    - '0.0.0.0:5601:5601'
     networks:
     - name: "{{ network_name }}"
     log_driver: "{{ log_driver }}"
