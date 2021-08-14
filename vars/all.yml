@@ -58,7 +58,7 @@ heartbeatwatcher_mail_from: "status@example.com"
 
 
 jenkins_version: "2.73.1"  # The exact version of jenkins to deploy
-
+jenkins_url: "http://10.60.61.10:8080"
 jenkins_hostname: "127.0.0.1"  # The hostname that Jenkins will be accessible on
 # The port that Jenkins will listen on for unsecured (HTTP) requests. Define to -1 to
 # disable HTTP.
@@ -99,7 +99,14 @@ jenkins_source_secrets: "{{ jenkins_source_dir_configs }}/secrets/"
 jenkins_jobs: []
 
 # List of plugins to install in the Jenkins instance
-jenkins_plugins: []
+jenkins_plugins:
+- git
+- configuration-as-code
+- github-branch-source
+- pipeline-github-lib
+- pipeline-stage-view
+- workflow-aggregator
+- ws-cleanup
 
 # How long to wait for installing plugins, in seconds. If you are seeing failures in the
 # "Wait for plugins to finish installing" task with an error message like "Timeout when
@@ -161,16 +168,3 @@ jenkins_docker_container_name: jenkins
 # Default, if true, the port will be exposed on the host (using "port")
 # If set to false, the port will only be exposed to other containers (using "expose")
 jenkins_docker_expose_port: true
-
-
-#############################################
-# Apt vars: apply to deploying via apt only #
-#############################################
-
-# Packages which are to be installed on the jenkins instance
-jenkins_apt_packages:
-  - openjdk-8-jdk
-
-# Java version to use. Note that JDK 8 is required for Jenkins
-# 2.54 or greater.
-jenkins_java_version: "java-1.8.0-openjdk-amd64"

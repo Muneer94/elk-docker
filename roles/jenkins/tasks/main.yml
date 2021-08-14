@@ -33,7 +33,17 @@
   register: container_result
   when: not jenkins_docker_expose_port
 
-- name: Pause container  # noqa 503
-  pause:
-    seconds: 45
-  when: container_result|changed
+# - name: Pause container  # noqa 503
+#   pause:
+#     seconds: 45
+#   when: container_result|changed
+
+- name: Install plugins without an API token
+  jenkins_plugin:
+    name: "{{ item }}"
+    jenkins_home: "{{ jenkins_home }}"
+    owner: "{{ jenkins_config_owner }}"
+    group: "{{ jenkins_config_group }}"
+    url: "{{ jenkins_url }}"
+    timeout: "{{ jenkins_plugin_timeout }}"
+  with_items: "{{ jenkins_plugins }}"
