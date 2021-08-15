@@ -1,0 +1,70 @@
+def util;
+
+pipeline {
+   agent any
+   stages {
+      stage('one') {
+        steps {
+            script {
+                util = load("${env.WORKSPACE}/scripts/groovy/checkout.groovy")
+                util.runStep1()
+            }
+        }
+      }
+      post {
+        util.xxxx
+      }
+
+      stage('two') {
+        steps {
+            script {
+                util = load("${env.WORKSPACE}/scripts/build_util.groovy")
+                util.runStep2()
+            }
+        }
+      }
+   }
+}
+
+node('master') {
+    git url: "git@github.com:Muneer94/elk-docker.git", branch: 'master'
+    stage('scm') {
+        checkout scm
+    }
+    stage('build') {
+        withMaven(jdk: 'JDK9.0.1', maven: 'Maven3.5.2') {
+            sh 'mvn clean install'
+        }
+    }
+}
+
+
+
+pipeline {
+    agent any
+    // tools {
+    //     maven 'MAVEN_PATH'
+    //     jdk 'jdk8'
+    // }
+    stages {
+        stage("Checkout Code") {
+            steps {
+                git branch: 'master',
+                url: "https://github.com/iamvickyav/spring-boot-data-H2-embedded.git"
+            }
+        }
+
+        // stage("Code coverage") {
+        //    steps {
+        //        jacoco(
+        //             execPattern: '**/target/**.exec',
+        //             classPattern: '**/target/classes',
+        //             sourcePattern: '**/src',
+        //             inclusionPattern: 'com/iamvickyav/**',
+        //             changeBuildStatus: true,
+        //             minimumInstructionCoverage: '30',
+        //             maximumInstructionCoverage: '80')
+        //        }
+        //    }
+        }
+ }
