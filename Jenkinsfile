@@ -4,6 +4,9 @@ import groovy.json.*
 
 pipeline {
     agent any
+    options {
+        ansiColor('xterm')
+    }
     stages {
         stage('Sample') {
             steps {
@@ -14,17 +17,17 @@ pipeline {
         }
         stage('Deploy ElasticSearch') {
             steps {
-                ansiblePlaybook colorizedOutput: true, installation: 'Ansible', credentialsId: '0e2e4a1b-17ef-4112-9694-0c87163c4fd8', inventory: 'inventory/ansible_hosts', playbook: 'elk.yml',tags: "elasticsearch"
+                ansiblePlaybook colorized: true, installation: 'Ansible', credentialsId: '0e2e4a1b-17ef-4112-9694-0c87163c4fd8', inventory: 'inventory/ansible_hosts', playbook: 'elk.yml',tags: "elasticsearch"
             }
         }
         stage('Deploy Kibana') {
             steps {
-                ansiblePlaybook colorizedOutput: true, installation: 'Ansible', credentialsId: '0e2e4a1b-17ef-4112-9694-0c87163c4fd8', inventory: 'inventory/ansible_hosts', playbook: 'elk.yml',tags: "kibana"
+                ansiblePlaybook colorized: true, installation: 'Ansible', credentialsId: '0e2e4a1b-17ef-4112-9694-0c87163c4fd8', inventory: 'inventory/ansible_hosts', playbook: 'elk.yml',tags: "kibana"
             }
         }
         stage('Deploy Filebeat') {
             steps {
-                ansiblePlaybook colorizedOutput: true, installation: 'Ansible', credentialsId: '0e2e4a1b-17ef-4112-9694-0c87163c4fd8', inventory: 'inventory/ansible_hosts', playbook: 'elk.yml',tags: "filebeat"
+                ansiblePlaybook colorized: true, installation: 'Ansible', credentialsId: '0e2e4a1b-17ef-4112-9694-0c87163c4fd8', inventory: 'inventory/ansible_hosts', playbook: 'elk.yml',tags: "filebeat"
             }
         }
     }
