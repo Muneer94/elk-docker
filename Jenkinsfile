@@ -8,7 +8,7 @@ pipeline {
         stage('Sample') {
             steps {
                 script {
-                    sh 'echo \'Hello Muneer\''
+                    echo "Hello Muneer"
                 }
             }
         }
