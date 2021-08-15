@@ -1,5 +1,4 @@
 import jenkins.model.*;
-import hudson.plugins.ec2.*;
 import groovy.json.*
 
 pipeline {
@@ -10,6 +9,11 @@ pipeline {
                 script {
                     echo "Muneer"
                 }
+            }
+        }
+        stage('Ansible Test') {
+            steps {
+                ansiblePlaybook credentialsId: '0e2e4a1b-17ef-4112-9694-0c87163c4fd8', inventory: 'inventory/ansible_hosts', playbook: 'elk.yml'
             }
         }
     }
