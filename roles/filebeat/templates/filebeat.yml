@@ -11,7 +11,7 @@ filebeat.autodiscover:
       hints.enabled: true
 filebeat.inputs:
 - type: container
-  paths: 
+  paths:
   - '/var/lib/docker/containers/*/*-json.log'
 filebeat.modules:
 - module: elasticsearch

@@ -13,7 +13,7 @@
       xpack.security.enabled: "true"
       xpack.monitoring.collection.enabled: "true"
       ELASTIC_PASSWORD: "{{ elastic_password }}"
-    ports: 
+    ports:
     - '0.0.0.0:9200:9200'
     volumes:
     - "dataes:/usr/share/elasticsearch/data"
