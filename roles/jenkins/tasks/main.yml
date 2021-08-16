@@ -9,11 +9,11 @@
     mode: '0644'
 
 - name: Build Jenkins image with ansible from Dockerfile
-  docker_image:
+  community.docker.docker_image:
     name: "{{ jenkins_docker_image }}:{{ jenkins_version }}"
     build:
       path: "{{ jenkins_docker_path }}"
-      source: build
+    source: build
     state: present
 
 - name: Ensure jenkins home dir is created
