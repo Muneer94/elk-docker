@@ -1,9 +1,14 @@
+#!/usr/bin/env groovy
+
 import jenkins.model.*;
-import hudson.plugins.ec2.*;
 import groovy.json.*
 
 pipeline {
     agent any
+    environment {
+        CRED_ID = "0e2e4a1b-17ef-4112-9694-0c87163c4fd"
+        INVENTORY_PATH = "inventory/ansible_hosts"
+    }
     options {
         ansiColor('xterm')
     }
@@ -17,17 +22,17 @@ pipeline {
         }
         stage('Deploy ElasticSearch') {
             steps {
-                ansiblePlaybook colorized: true, installation: 'Ansible', credentialsId: '0e2e4a1b-17ef-4112-9694-0c87163c4fd8', inventory: 'inventory/ansible_hosts', playbook: 'elk.yml',tags: "elasticsearch"
+                ansiblePlaybook colorized: true, installation: 'Ansible', credentialsId: '${env.CRED_ID}', inventory: '${env.INVENTORY_PATH}', playbook: 'elk.yml',tags: "elasticsearch"
             }
         }
         stage('Deploy Kibana') {
             steps {
-                ansiblePlaybook colorized: true, installation: 'Ansible', credentialsId: '0e2e4a1b-17ef-4112-9694-0c87163c4fd8', inventory: 'inventory/ansible_hosts', playbook: 'elk.yml',tags: "kibana"
+                ansiblePlaybook colorized: true, installation: 'Ansible', credentialsId: '${env.CRED_ID}', inventory: '${env.INVENTORY_PATH}', playbook: 'elk.yml',tags: "kibana"
             }
         }
         stage('Deploy Filebeat') {
             steps {
-                ansiblePlaybook colorized: true, installation: 'Ansible', credentialsId: '0e2e4a1b-17ef-4112-9694-0c87163c4fd8', inventory: 'inventory/ansible_hosts', playbook: 'elk.yml',tags: "filebeat"
+                ansiblePlaybook colorized: true, installation: 'Ansible', credentialsId: '${env.CRED_ID}', inventory: '${env.INVENTORY_PATH}', playbook: 'elk.yml',tags: "filebeat"
             }
         }
     }
