@@ -20,19 +20,6 @@ pipeline {
                 }
             }
         }
-        stage('Sample') {
-            when {
-                anyOf {
-                    changeset "vars/**"
-                    changeset "inventory/**"
-                }
-            }
-            steps {
-                script {
-                    echo "Muneer"
-                }
-            }
-        }
         stage('Deploy ElasticSearch') {
             when {
                 anyOf {
