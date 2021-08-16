@@ -52,10 +52,6 @@ heartbeatwatcher_smtp_password: "{{ vault_heartbeatwatcher_smtp_password }}"
 heartbeatwatcher_mail_to: "contact@example.com"
 heartbeatwatcher_mail_from: "status@example.com"
 
-
-
-
-
 jenkins_docker_path: "/tmp"
 jenkins_version: "2.289.3-latest"  # The exact version of jenkins to deploy
 jenkins_url: "http://10.60.61.10:8080"
@@ -193,44 +189,6 @@ jenkins_plugin_timeout: 300
 
 # List of sources of custom jenkins plugins to install
 jenkins_custom_plugins: []
-
-#######################
-# Authentication vars #
-#######################
-
-# Mechanism to use when authenticating to Jenkins. Must be one of the following values:
-# - api: Use an API token which belongs to a specific user
-# - crumb: Use anonymous crumb-based authentication
-# - none: No security (not recommended)
-# For more information, please refer to the "Authentication and Security" section of the
-# README.
-jenkins_auth: "crumb"
-
-# When defined, use this API token instead of getting a crumb from the system. Requires
-# jenkins_api_username.
-jenkins_api_token: ""
-# Username which owns the above API token.
-jenkins_api_username: ""
-
-#########################################
-# SSL vars: apply to Jenkins HTTPS only #
-#########################################
-
-# See https://wiki.jenkins.io/display/JENKINS/Starting+and+Accessing+Jenkins for more info
-
-# Jenkins JKS keystore file. Mutually exclusive with the certificate/private key options.
-jenkins_https_keystore: ""
-# Jenkins JKS keystore password.
-jenkins_https_keystore_password: ""
-
-# Jenkins CA signed certificate file. Mutually exclusive with the keystore options.
-jenkins_https_certificate: ""
-# Jenkins CA signed certificate private key.
-jenkins_https_private_key: ""
-
-# Set to false if you are using a self-signed certificate and wish to ignore any
-# certificate verification errors from Ansible.
-jenkins_https_validate_certs: true
 
 ###################################################
 # Docker vars: apply to deploying via docker only #
