@@ -9,7 +9,6 @@
   template: src={{ item.src }} dest={{ item.dest }}
   with_items:
     - { src: 'templates/heartbeat.yml', dest: '{{ heartbeat_conf_dir }}/heartbeat.yml' }
-  mode: 0777
   notify: Restart heartbeat container
 
 - name: Check heartbeat template

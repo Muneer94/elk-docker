@@ -9,7 +9,6 @@
   template: src={{ item.src }} dest={{ item.dest }}
   with_items:
     - { src: 'templates/filebeat.yml', dest: '{{ filebeat_conf_dir }}/filebeat.yml' }
-  mode: 0777
   notify: Restart filebeat container
 
 - name: Check filebeat template

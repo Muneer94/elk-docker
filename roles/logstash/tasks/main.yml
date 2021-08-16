@@ -9,7 +9,6 @@
   with_items:
     - { src: 'templates/syslog.conf', dest: '/{{ logstash_conf_dir }}/pipeline/syslog.conf' }
     - { src: 'templates/beats.conf', dest: '/{{ logstash_conf_dir }}/pipeline/beats.conf' }
-  mode: 0777
   notify: Restart logstash container
 
 - name: Start logstash container

@@ -10,7 +10,6 @@
   template: src={{ item.src }} dest={{ item.dest }}
   with_items:
     - { src: 'templates/metricbeat.yml', dest: '{{ metricbeat_conf_dir }}/metricbeat.yml' }
-  mode: 0777
   notify: Restart metricbeat container
 
 - name: Check metricbeat template
