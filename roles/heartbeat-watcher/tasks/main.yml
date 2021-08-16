@@ -3,6 +3,7 @@
 - name: Ensure heartbeat watcher conf dir exists
   file:
     path: "{{ heartbeatwatcher_conf_dir }}"
+    mode: 0777
     state: directory
 
 - name: Copy heartbeat watcher conf

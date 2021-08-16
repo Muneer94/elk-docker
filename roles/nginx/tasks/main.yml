@@ -1,6 +1,7 @@
 - name: Ensure nginx conf dir exists
   file:
     path: "{{ nginx_conf_dir }}"
+    mode: 0777
     state: directory
 
 - name: Check if cert files exist

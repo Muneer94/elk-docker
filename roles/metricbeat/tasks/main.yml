@@ -3,6 +3,7 @@
 - name: Ensure metricbeat conf dir exists
   file:
     path: "{{ metricbeat_conf_dir }}"
+    mode: 0777
     state: directory
 
 - name: Copy metricbeat conf

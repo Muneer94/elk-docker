@@ -1,6 +1,7 @@
 - name: Ensure logstash pipeline conf dir exists
   file:
     path: "{{ logstash_conf_dir }}/pipeline"
+    mode: 0777
     state: directory
 
 - name: Copy logstash pipeline conf
