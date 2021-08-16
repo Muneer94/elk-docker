@@ -13,6 +13,7 @@
   template:
     src: templates/nginx-certbot.conf
     dest: "{{ nginx_conf_dir }}/{{ server_name }}.conf"
+  mode: 0777
   when: not certbot_certs.stat.exists
 
 - name: Start nginx container
