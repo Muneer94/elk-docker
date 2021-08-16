@@ -8,7 +8,7 @@
 FROM jenkins/jenkins:2.289.3
 USER root
 
-RUN apt-get update && apt-get install python3-pip python3 -y && \
+RUN apt-get update && apt-get install python3-pip python3 ansible-lint -y && \
     pip3 install ansible --upgrade &&\
     apt-get upgrade -y && apt-get update
 
