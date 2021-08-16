@@ -22,17 +22,17 @@ pipeline {
         }
         stage('Deploy ElasticSearch') {
             steps {
-                ansiblePlaybook colorized: true, installation: "Ansible", credentialsId: "${env.CRED_ID}", inventory: "${env.INVENTORY_PATH}", playbook: "elk.yml",tags: "elasticsearch"
+                ansiblePlaybook colorized: true, installation: "Ansible", credentialsId: '0e2e4a1b-17ef-4112-9694-0c87163c4fd', inventory: "${env.INVENTORY_PATH}", playbook: "elk.yml",tags: "elasticsearch"
             }
         }
         stage('Deploy Kibana') {
             steps {
-                ansiblePlaybook colorized: true, installation: 'Ansible', credentialsId: '${env.CRED_ID}', inventory: '${env.INVENTORY_PATH}', playbook: 'elk.yml',tags: "kibana"
+                ansiblePlaybook colorized: true, installation: 'Ansible', credentialsId: '0e2e4a1b-17ef-4112-9694-0c87163c4fd', inventory: '${env.INVENTORY_PATH}', playbook: 'elk.yml',tags: "kibana"
             }
         }
         stage('Deploy Filebeat') {
             steps {
-                ansiblePlaybook colorized: true, installation: 'Ansible', credentialsId: '${env.CRED_ID}', inventory: '${env.INVENTORY_PATH}', playbook: 'elk.yml',tags: "filebeat"
+                ansiblePlaybook colorized: true, installation: 'Ansible', credentialsId: '0e2e4a1b-17ef-4112-9694-0c87163c4fd', inventory: '${env.INVENTORY_PATH}', playbook: 'elk.yml',tags: "filebeat"
             }
         }
     }
