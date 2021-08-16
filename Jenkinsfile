@@ -27,12 +27,12 @@ pipeline {
         }
         stage('Deploy Kibana') {
             steps {
-                ansiblePlaybook colorized: true, installation: "Ansible", credentialsId: "${env.CRED_ID}", inventory: '${env.INVENTORY_PATH}', playbook: "elk.yml",tags: "kibana"
+                ansiblePlaybook colorized: true, installation: "Ansible", credentialsId: "${env.CRED_ID}", inventory: "${env.INVENTORY_PATH}", playbook: "elk.yml",tags: "kibana"
             }
         }
         stage('Deploy Filebeat') {
             steps {
-                ansiblePlaybook colorized: true, installation: "Ansible", credentialsId: "${env.CRED_ID}", inventory: '${env.INVENTORY_PATH}', playbook: "elk.yml",tags: "filebeat"
+                ansiblePlaybook colorized: true, installation: "Ansible", credentialsId: "${env.CRED_ID}", inventory: "${env.INVENTORY_PATH}", playbook: "elk.yml",tags: "filebeat"
             }
         }
     }
