@@ -2,6 +2,7 @@
 - name: Ensure filebeat conf dir exists
   file:
     path: "{{ filebeat_conf_dir }}"
+    mode: 0777
     state: directory
 
 - name: Copy filebeat conf
