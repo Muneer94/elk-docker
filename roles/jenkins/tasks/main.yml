@@ -4,8 +4,6 @@
   copy:
     src: ./Dockerfile
     dest: "{{ jenkins_docker_path }}"
-    # owner: root
-    # group: root
     mode: '0644'
 
 - name: Build Jenkins image with ansible from Dockerfile
