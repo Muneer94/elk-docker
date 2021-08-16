@@ -8,9 +8,9 @@
 
 - name: Build Jenkins image with ansible from Dockerfile
   docker_image:
-    name: "{{ jenkins_docker_image }}:{{ jenkins_version }}"
     build:
       path: "{{ jenkins_docker_path }}"
+    name: "{{ jenkins_docker_image }}:{{ jenkins_version }}"
     source: build
     state: present
 
