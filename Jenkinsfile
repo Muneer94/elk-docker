@@ -14,6 +14,12 @@ pipeline {
     }
     stages {
         stage('Sample') {
+            when {
+                anyOf {
+                    changeset "vars/**"
+                    changeset "inventory/**"
+                }
+            }
             steps {
                 script {
                     echo "Muneer"
