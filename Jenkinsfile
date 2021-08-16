@@ -27,18 +27,63 @@ pipeline {
             }
         }
         stage('Deploy ElasticSearch') {
+            when {
+                anyOf {
+                    changeset "vars/**"
+                    changeset "inventory/**"
+                    changeset "roles/elasticsearch/**"
+                }
+            }
             steps {
                 ansiblePlaybook colorized: true, installation: "Ansible", credentialsId: "${env.CRED_ID}", inventory: "${env.INVENTORY_PATH}", playbook: "elk.yml",tags: "elasticsearch"
             }
         }
         stage('Deploy Kibana') {
+            when {
+                anyOf {
+                    changeset "vars/**"
+                    changeset "inventory/**"
+                    changeset "roles/kibana/**"
+                }
+            }
             steps {
                 ansiblePlaybook colorized: true, installation: "Ansible", credentialsId: "${env.CRED_ID}", inventory: "${env.INVENTORY_PATH}", playbook: "elk.yml",tags: "kibana"
             }
         }
+        stage('Deploy Logstash') {
+            when {
+                anyOf {
+                    changeset "vars/**"
+                    changeset "inventory/**"
+                    changeset "roles/logstash/**"
+                }
+            }
+            steps {
+                ansiblePlaybook colorized: true, installation: "Ansible", credentialsId: "${env.CRED_ID}", inventory: "${env.INVENTORY_PATH}", playbook: "elk.yml",tags: "logstash"
+            }
+        }
         stage('Deploy Filebeat') {
+            when {
+                anyOf {
+                    changeset "vars/**"
+                    changeset "inventory/**"
+                    changeset "roles/filebeat/**"
+                }
+            }
             steps {
                 ansiblePlaybook colorized: true, installation: "Ansible", credentialsId: "${env.CRED_ID}", inventory: "${env.INVENTORY_PATH}", playbook: "elk.yml",tags: "filebeat"
+            }
+        }
+        stage('Deploy Hearbeat') {
+            when {
+                anyOf {
+                    changeset "vars/**"
+                    changeset "inventory/**"
+                    changeset "roles/heartbeat/**"
+                }
+            }
+            steps {
+                ansiblePlaybook colorized: true, installation: "Ansible", credentialsId: "${env.CRED_ID}", inventory: "${env.INVENTORY_PATH}", playbook: "elk.yml",tags: "heartbeat"
             }
         }
     }
