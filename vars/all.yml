@@ -53,7 +53,7 @@ heartbeatwatcher_mail_to: "contact@example.com"
 heartbeatwatcher_mail_from: "status@example.com"
 
 jenkins_docker_path: "/tmp"
-jenkins_version: "2.289.3-latest"  # The exact version of jenkins to deploy
+jenkins_version: "2.289.3-new"  # The exact version of jenkins to deploy
 jenkins_url: "http://10.60.61.10:8080"
 jenkins_hostname: "127.0.0.1"  # The hostname that Jenkins will be accessible on
 # The port that Jenkins will listen on for unsecured (HTTP) requests. Define to -1 to

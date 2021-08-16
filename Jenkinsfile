@@ -13,6 +13,13 @@ pipeline {
         ansiColor('xterm')
     }
     stages {
+        stage('Lint Code') {
+            steps {
+                script {
+                    sh 'ansible-lint elk.yml'
+                }
+            }
+        }
         stage('Sample') {
             when {
                 anyOf {
