@@ -20,10 +20,24 @@ pipeline {
                 }
             }
         }
-        stage('Quality Check') {
-            def scannerHome = tool 'SonarScanner';
-            withSonarQubeEnv() {
-                sh "${scannerHome}/bin/sonar-scanner"
+        // stage('Quality Check') {
+        //     def scannerHome = tool 'sonar';
+        //     withSonarQubeEnv() {
+        //         sh "${scannerHome}/bin/sonar-scanner"
+        //     }
+        // }
+
+        stage('SonarQube analysis') {
+            steps {
+                def scannerHome = tool 'sonar';
+                withSonarQubeEnv('') {
+                    sh "${scannerHome}/bin/sonar-scanner"
+                }
+            }
+        }
+        stage("Quality gate") {
+            steps {
+                waitForQualityGate abortPipeline: true
             }
         }
         stage('Deploy ElasticSearch') {
