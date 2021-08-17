@@ -41,7 +41,7 @@ pipeline {
         }
         stage("Quality gate") {
             steps {
-                waitForQualityGate(webhookSecretId: 'sonarqube') abortPipeline: true
+                waitForQualityGate webhookSecretId: 'sonarqube' abortPipeline: true
             }
         }
         stage('Deploy ElasticSearch') {
