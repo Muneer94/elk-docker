@@ -26,7 +26,6 @@ pipeline {
         //         sh "${scannerHome}/bin/sonar-scanner"
         //     }
         // }
-
         stage('SonarQube analysis') {
             tools {
                 jdk "jdk11" // the name you have given the JDK installation in Global Tool Configuration
@@ -35,9 +34,6 @@ pipeline {
                 script {
                     def scannerHome = tool 'sonar';
                     withSonarQubeEnv("sonar") {
-                        sh "echo $JAVA_HOME"
-                        // sh "${scannerHome}/bin/sonar-scanner --version"
-                        // sh "java version"
                         sh "${scannerHome}/bin/sonar-scanner  -Dsonar.projectKey=elk-docker -Dsonar.sources=.  -Dsonar.host.url=http://10.60.61.10:9000 -Dsonar.login=d041342358a913d9cd211805311ddd22ceff3abf"
                     }
                 }
