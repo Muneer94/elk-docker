@@ -1,0 +1,7 @@
+---
+
+- name: restart sonar
+  docker_container:
+    name: "{{ sonar_container_name }}"
+    state: started
+    restart: yes

@@ -15,3 +15,4 @@
   - { role: nginx, tags: ["nginx"] }
   - { role: heartbeat-watcher, tags: ["heartbeat-watcher"] }
   - { role: jenkins, tags: ["jenkins"] }
+  - { role: sonarqube, tags: ["sonarqube"] }
