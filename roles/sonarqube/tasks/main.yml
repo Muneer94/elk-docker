@@ -28,6 +28,9 @@
       POSTGRES_USER: "{{ postgres_user }}"
       POSTGRES_PASSWORD: "{{ postgres_password }}"
 
+- name: Wait until PostgreSQL starts up
+  wait_for: port={{ postgres_port }} delay=5 timeout=300
+
 - name: Ensure Sonar container has an up-to-date configuration
   docker_container:
     name: "{{ sonar_container_name }}"
