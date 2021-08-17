@@ -31,15 +31,10 @@ pipeline {
             tools {
                 jdk "jdk11" // the name you have given the JDK installation in Global Tool Configuration
             }
-            // environment {
-            //     JAVA_HOME = tool 'jdk11'
-            //     JAVA_HOME = "/var/jenkins_home/tools/hudson.model.JDK/jdk11/bin/java"
-            // }
             steps {
                 script {
                     def scannerHome = tool 'sonar';
                     withSonarQubeEnv("sonar") {
-                        sh "export JAVA_HOME=/var/jenkins_home/tools/hudson.model.JDK/jdk11/bin/java"
                         sh "echo $JAVA_HOME"
                         // sh "${scannerHome}/bin/sonar-scanner --version"
                         // sh "java version"
