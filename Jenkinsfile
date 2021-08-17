@@ -28,7 +28,7 @@ pipeline {
                 script {
                     def scannerHome = tool "sonar";
                     withSonarQubeEnv(credentialsId: "sonarqube") {
-                        sh "${scannerHome}/bin/sonar-scanner  -Dsonar.projectKey=elk-docker -Dsonar.sources=. -Dsonar.host.url=http://10.60.61.10:9000"
+                        sh "${scannerHome}/bin/sonar-scanner"
                     }
                 }
             }
