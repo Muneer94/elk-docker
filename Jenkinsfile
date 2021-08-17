@@ -20,21 +20,15 @@ pipeline {
                 }
             }
         }
-        // stage('Quality Check') {
-        //     def scannerHome = tool 'sonar';
-        //     withSonarQubeEnv() {
-        //         sh "${scannerHome}/bin/sonar-scanner"
-        //     }
-        // }
-        stage('SonarQube analysis') {
+        stage('Quality Check') {
             tools {
                 jdk "jdk11" // the name you have given the JDK installation in Global Tool Configuration
             }
             steps {
                 script {
                     def scannerHome = tool "sonar";
-                    withSonarQubeEnv(credentialsId: "sonarqube", installationName: "sonar") {
-                        sh "${scannerHome}/bin/sonar-scanner  -Dsonar.projectKey=elk-docker -Dsonar.sources=. -Dsonar.host.url=http://10.60.61.10:9000 -Dsonar.login=d041342358a913d9cd211805311ddd22ceff3abf"
+                    withSonarQubeEnv(credentialsId: "sonarqube") {
+                        sh "${scannerHome}/bin/sonar-scanner  -Dsonar.projectKey=elk-docker -Dsonar.sources=. -Dsonar.host.url=http://10.60.61.10:9000"
                     }
                 }
             }
@@ -44,7 +38,7 @@ pipeline {
         //         waitForQualityGate webhookSecretId: 'sonarqube', abortPipeline: true
         //     }
         // }
-        stage('Deploy ElasticSearch') {
+        stage('ElasticSearch') {
             when {
                 anyOf {
                     changeset "vars/**"
@@ -56,7 +50,7 @@ pipeline {
                 ansiblePlaybook colorized: true, installation: "Ansible", credentialsId: "${env.CRED_ID}", inventory: "${env.INVENTORY_PATH}", playbook: "elk.yml",tags: "elasticsearch"
             }
         }
-        stage('Deploy Kibana') {
+        stage('Kibana') {
             when {
                 anyOf {
                     changeset "vars/**"
@@ -68,7 +62,7 @@ pipeline {
                 ansiblePlaybook colorized: true, installation: "Ansible", credentialsId: "${env.CRED_ID}", inventory: "${env.INVENTORY_PATH}", playbook: "elk.yml",tags: "kibana"
             }
         }
-        stage('Deploy Logstash') {
+        stage('Logstash') {
             when {
                 anyOf {
                     changeset "vars/**"
@@ -80,7 +74,7 @@ pipeline {
                 ansiblePlaybook colorized: true, installation: "Ansible", credentialsId: "${env.CRED_ID}", inventory: "${env.INVENTORY_PATH}", playbook: "elk.yml",tags: "logstash"
             }
         }
-        stage('Deploy Filebeat') {
+        stage('Filebeat') {
             when {
                 anyOf {
                     changeset "vars/**"
@@ -92,7 +86,7 @@ pipeline {
                 ansiblePlaybook colorized: true, installation: "Ansible", credentialsId: "${env.CRED_ID}", inventory: "${env.INVENTORY_PATH}", playbook: "elk.yml",tags: "filebeat"
             }
         }
-        stage('Deploy Hearbeat') {
+        stage('Hearbeat') {
             when {
                 anyOf {
                     changeset "vars/**"
