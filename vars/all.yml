@@ -162,7 +162,6 @@ jenkins_plugins:
 - docker-commons
 - docker-workflow
 - pipeline-stage-tags-metadata
-- pipeline-model-declarative-agent
 - pipeline-model-definition
 - lockable-resources
 - workflow-aggregator
@@ -181,6 +180,7 @@ jenkins_plugins:
 - docker-java-api
 - docker-plugin
 - ansicolor
+- sonarqube-scanner
 
 # How long to wait for installing plugins, in seconds. If you are seeing failures in the
 # "Wait for plugins to finish installing" task with an error message like "Timeout when
