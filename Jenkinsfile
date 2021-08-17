@@ -20,6 +20,12 @@ pipeline {
                 }
             }
         }
+        stage('Quality Check') {
+            def scannerHome = tool 'SonarScanner';
+            withSonarQubeEnv() {
+                sh "${scannerHome}/bin/sonar-scanner"
+            }
+        }
         stage('Deploy ElasticSearch') {
             when {
                 anyOf {
