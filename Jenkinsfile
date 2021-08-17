@@ -39,11 +39,11 @@ pipeline {
                 }
             }
         }
-        stage("Quality gate") {
-            steps {
-                waitForQualityGate webhookSecretId: 'sonarqube', abortPipeline: true
-            }
-        }
+        // stage("Quality gate") {
+        //     steps {
+        //         waitForQualityGate webhookSecretId: 'sonarqube', abortPipeline: true
+        //     }
+        // }
         stage('Deploy ElasticSearch') {
             when {
                 anyOf {
