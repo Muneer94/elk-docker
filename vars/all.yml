@@ -206,15 +206,18 @@ jenkins_docker_container_name: jenkins
 jenkins_docker_expose_port: true
 
 # Sonarqube
-workspace: /tmp
-mysql_image: "mysql:latest"
-mysql_container: "sonarqube-mysql"
-mysql_data_dir: "/opt/docker/sonarqube/mysql"
-mysql_root_password: "sonar"
-sonar_mysql_user: "sonar"
-sonar_mysql_password: "sonar"
-sonar_datanase_name: "sonar"
-sonar_image: "sonarqube:latest"
+postgres_docker_image: "postgres"
+postgres_docker_image_tag: "13.4-alpine"
+postgres_container_name: "postgres"
+postgres_port: 5432
+postgres_networks: null
+container_memory_limit: null
+postgres_user: "sonar"
+postgres_password: "sonar"
+postgres_database: "sonar"
+
+sonar_docker_image: "sonarqube"
+sonar_docker_image_tag: "latest"
 sonar_port: 9000
 sonar_port_2: 9092
 sonar_path: "/data/docker/sonarqube"
@@ -222,6 +225,8 @@ sonar_data_path: "{{ sonar_path }}/data"
 sonar_conf_path: "{{ sonar_path }}/conf"
 sonar_extensions_path: "{{ sonar_path }}/extensions"
 sonar_logs_path: "{{ sonar_path }}/data"
-sonar_jdbc_url: "jdbc:mysql://{{ mysql_container }}:3306/{{ sonar_datanase_name }}?useUnicode=true&characterEncoding=utf8&rewriteBatchedStatements=true"
+sonar_jdbc_url: "jdbc:postgresql://{{ postgres_container_name }}:{{ postgres_port }}/{{ postgres_database }}"
 sonar_command_var: ""
 sonar_container_name: "sonar"
+
+# jdbc:postgresql://db:5432/sonar

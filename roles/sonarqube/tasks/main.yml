@@ -1,28 +1,46 @@
 ---
 
-- name: start up mysql container
+- name: Pull PostgreSQL image
+  docker_image:
+    name: "{{ postgres_docker_image }}"
+    tag: "{{ postgres_docker_image_tag }}"
+
+- name: Create data container
   docker_container:
-    name: "{{ mysql_container }}"
-    image: "{{ mysql_image }}"
+    name: "{{ postgres_container_name }}-data"
+    image: "{{ postgres_docker_image }}:{{ postgres_docker_image_tag }}"
+    state: present
+
+- name: Run PostgreSQL container
+  docker_container:
+    name: "{{ postgres_container_name }}"
+    image: "{{ postgres_docker_image }}:{{ postgres_docker_image_tag }}"
+    restart_policy: always
     state: started
-    volumes:
-      - "{{ mysql_data_dir }}:/var/lib/mysql"
-    env:
-      MYSQL_ROOT_PASSWORD: "{{ mysql_root_password }}"
-      MYSQL_DATABASE: "{{ sonar_datanase_name }}"
-      MYSQL_USER: "{{ sonar_mysql_user }}"
-      MYSQL_PASSWORD: "{{ sonar_mysql_password }}"
+    memory: "{{ container_memory_limit | default(omit) }}"
+    volumes_from:
+      - "{{ postgres_container_name }}-data"
     ports:
-      - "3306:3306"
+      - "{{ postgres_port }}:5432"
+    networks: "{{ postgres_networks }}"
+    env:
+      POSTGRES_DB: "{{ postgres_database }}"
+      POSTGRES_USER: "{{ postgres_user }}"
+      POSTGRES_PASSWORD: "{{ postgres_password }}"
+  register: postgres_container
+
+- name: Wait until PostgreSQL starts up
+  wait_for: port={{ postgres_port }} delay=5
+  when: postgres_container.changed
 
 - name: Ensure Sonar container has an up-to-date configuration
   docker_container:
     name: "{{ sonar_container_name }}"
-    image: "{{ sonar_image }}"
+    image: "{{ sonar_docker_image }}:{{ sonar_docker_image_tag }}"
     state: started
     restart: yes
     links:
-      - "{{ mysql_container }}:mysql"
+      - "{{ postgres_container_name }}:postgres"
     ports:
       - "{{ sonar_port }}:9000"
       - "{{ sonar_port_2 }}:9092"
@@ -34,11 +52,8 @@
     command: "{{ sonar_command_var }}"
     env:
       SONARQUBE_JDBC_URL: "{{ sonar_jdbc_url }}"
-      SONARQUBE_JDBC_USERNAME: "{{ sonar_mysql_user }}"
-      SONARQUBE_JDBC_PASSWORD: "{{ sonar_mysql_password }}"
-  tags:
-    - docker
-
+      SONARQUBE_JDBC_USERNAME: "{{ postgres_user }}"
+      SONARQUBE_JDBC_PASSWORD: "{{ postgres_password }}"
 
 - name: Make sure Sonar is responding on the configured port.
   wait_for: port={{ sonar_port }} delay=3 timeout=300
