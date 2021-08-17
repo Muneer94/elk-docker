@@ -31,6 +31,9 @@ pipeline {
             tools {
                 jdk "jdk11" // the name you have given the JDK installation in Global Tool Configuration
             }
+            environment {
+                JAVA_HOME = tool 'jdk11'
+            }
             steps {
                 script {
                     def scannerHome = tool 'sonar';
