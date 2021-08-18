@@ -47,10 +47,11 @@ pipeline {
                     def dockerHome = tool "docker";
                     sh "echo ${dockerHome}"
                     docker.image("selenium/standalone-chrome:work").inside {
-                        sh "python3 -m venv venv/"
-                        sh ". venv/bin/activate"
-                        sh "pip3 install -r requirements.txt"
-                        sh "pytest tests/tests/test_basic_integration.py" 
+                        // sh "python3 -m venv venv/"
+                        // sh ". venv/bin/activate"
+                        sh "pip install -r requirements.txt"
+                        // sh "pip3 install -r requirements.txt"
+                        // sh "pytest tests/tests/test_basic_integration.py" 
                     }
                 }
             }
