@@ -30,7 +30,6 @@
     - "{{ jenkins_port }}:8080"
     volumes:
     - "{{ jenkins_home }}:/var/jenkins_home"
-    - "/var/run/containerd/containerd.sock:/var/run/docker.sock"
     env:
       JAVA_OPTS: "{{ jenkins_java_opts }}"
   register: container_result
