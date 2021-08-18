@@ -1,10 +1,3 @@
-'''
-Created on Oct 9, 2017
-
-@author: Liza Dayoub
-'''
-
-
 from munch import Munch
 
 es_bank_accounts = Munch()

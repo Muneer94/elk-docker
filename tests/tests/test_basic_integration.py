@@ -1,9 +1,3 @@
-'''
-Created on Jan 29, 2018
-
-@author: Liza Dayoub
-'''
-
 import pytest
 from tests.data import info
 from lib.elasticsearch.api.bulk_api import ElasticsearchBulkApi

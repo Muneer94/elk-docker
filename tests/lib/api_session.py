@@ -1,9 +1,3 @@
-'''
-Created on Sep 29, 2017
-
-@author: Liza Dayoub
-'''
-
 import requests
 from requests.packages.urllib3 import disable_warnings
 from requests.packages.urllib3.exceptions import InsecureRequestWarning
