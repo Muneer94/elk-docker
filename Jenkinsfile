@@ -53,11 +53,10 @@ pipeline {
             // }
             steps {
                 script {
-                    sh "cd tests"
                     sh "python3 -m venv venv/"
                     sh "source venv/bin/activate"
                     sh "pip3 install -r requirements.txt"
-                    sh "pytest" 
+                    sh "pytest tests/tests/test_basic_integration.py"
                 }
             }
         }
