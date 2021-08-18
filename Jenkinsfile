@@ -38,7 +38,7 @@ pipeline {
         //         waitForQualityGate webhookSecretId: 'sonarqube', abortPipeline: true
         //     }
         // }
-        stage('Tests') {
+        stage('Testing') {
             agent {
                 docker { image 'selenium/standalone-chrome' }
             }
