@@ -46,7 +46,7 @@ pipeline {
                 script {
                     dir("tests") {
                         def dockerHome = tool "docker";
-                        docker.image("joyzoursky/python-chromedriver:new").inside {
+                        docker.image("selenium/standalone-chrome:new").inside {
                             // sh "python3 -m venv venv/"
                             // sh ". venv/bin/activate"
                             // sh "pip3 install -r requirements.txt"
