@@ -1,0 +1,9 @@
+ansible==2.10.7
+munch==2.2.0
+PyYAML>=4.2b1
+requests==2.20.0
+pytest===3.2.2
+selenium==3.5.0
+webium==1.2.1
+xvfbwrapper==0.2.9
+dictdiffer==0.8.0
