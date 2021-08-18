@@ -49,7 +49,7 @@ pipeline {
                 script {
                     def dockerHome = tool "docker";
                     sh "echo ${dockerHome}"
-                    ${dockerHome}.image("selenium/standalone-chrome").inside {
+                    docker.image("selenium/standalone-chrome").inside {
                         sh "python3 --version"
                     }
                 }
