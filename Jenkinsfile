@@ -16,7 +16,7 @@ pipeline {
         stage('Lint Code') {
             steps {
                 script {
-                    sh 'ansible-lint elk.yml'
+                    sh "ansible-lint elk.yml"
                 }
             }
         }
@@ -39,26 +39,28 @@ pipeline {
         //     }
         // }
         stage('Testing') {
-            tools {
-                dockerTool "docker"
-            }
-            // agent {
-            //     docker { image 'selenium/standalone-chrome' }
+            // tools {
+            //     dockerTool "docker"
+            // }
+            // steps {
+            //     script {
+            //         def dockerHome = tool "docker";
+            //         sh "echo ${dockerHome}"
+            //         docker.image("selenium/standalone-chrome").inside {
+            //             sh "python3 --version"
+            //         }
+            //     }
             // }
             steps {
                 script {
-                    def dockerHome = tool "docker";
-                    sh "echo ${dockerHome}"
-                    docker.image("selenium/standalone-chrome").inside {
-                        sh "python3 --version"
-                    }
+                    sh "cd tests"
+                    sh "python3 -m venv venv/"
+                    sh "source venv/bin/activate"
+                    sh "pip3 install -r requirements.txt"
+                    sh "pytest" 
                 }
             }
         }
-        //     steps {
-        //         sh 'python3 --version'
-        //     }
-        // }
         stage('ElasticSearch') {
             when {
                 anyOf {
