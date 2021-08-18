@@ -42,13 +42,20 @@ pipeline {
             tools {
                 dockerTool "docker"
             }
-            agent {
-                docker { image 'selenium/standalone-chrome' }
-            }
+            // agent {
+            //     docker { image 'selenium/standalone-chrome' }
+            // }
             steps {
-                sh 'python3 --version'
+                script {
+                    def dockerHome = tool "docker";
+                    sh "echo ${dockerHome}"
+                }
             }
         }
+        //     steps {
+        //         sh 'python3 --version'
+        //     }
+        // }
         stage('ElasticSearch') {
             when {
                 anyOf {
