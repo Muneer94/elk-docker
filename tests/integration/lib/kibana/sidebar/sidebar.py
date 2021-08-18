@@ -1,3 +1,10 @@
+'''
+Created on Jan 16, 2017
+
+@author: Liza Dayoub
+'''
+
+
 import re
 from lib.kibana.kibana_basepage import KibanaBasePage, data_test_subj
 from webium import Finds, Find

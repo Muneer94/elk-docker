@@ -51,5 +51,5 @@ kibana.url = os.getenv('KIBANA_URL', build_url(kibana, testing))
 print(kibana)
 
 browser.type = os.getenv('BROWSER', Chrome)
-browser.headless = os.getenv('RUN_HEADLESS_BROWSER', False)
+browser.headless = os.getenv('RUN_HEADLESS_BROWSER', True)
 settings.driver_class = check_browser(browser.type)

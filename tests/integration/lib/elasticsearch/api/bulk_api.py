@@ -1,3 +1,10 @@
+'''
+Created on Sep 29, 2017
+
+@author: Liza Dayoub
+'''
+
+
 import os.path
 from lib.api_session import ApiSession
 

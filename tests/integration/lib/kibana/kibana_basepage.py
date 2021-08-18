@@ -1,3 +1,10 @@
+'''
+Created on Sep 23, 2017
+
+@author: Liza Dayoub
+'''
+
+
 from selenium.webdriver.common.by import By
 from webium import BasePage, Find
 from webium.wait import wait

@@ -1,3 +1,10 @@
+'''
+Created on Sep 25, 2017
+
+@author: Liza Dayoub
+'''
+
+
 from lib.kibana.kibana_basepage import KibanaBasePage, data_test_subj
 from webium import Find
 from selenium.webdriver.common.by import By

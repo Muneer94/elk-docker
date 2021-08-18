@@ -1,3 +1,9 @@
+'''
+Created on Jan 16, 2018
+
+@author: Liza Dayoub
+'''
+
 from lib.kibana.kibana_basepage import KibanaBasePage, data_test_subj
 from webium import Find
 from webium.wait import wait
