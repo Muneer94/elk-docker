@@ -49,6 +49,7 @@ pipeline {
                     docker.image("selenium/standalone-chrome").inside {
                         sh "python3 --version"
                         sh "python3 --version"
+                        sh "ls -la"
                     }
                 }
             }
