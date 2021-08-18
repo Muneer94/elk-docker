@@ -6,13 +6,13 @@
     dest: "{{ jenkins_docker_path }}"
     mode: '0644'
 
-# - name: Build Jenkins image with ansible from Dockerfile
-#   docker_image:
-#     build:
-#       path: "{{ jenkins_docker_path }}"
-#     name: "{{ jenkins_docker_image }}:{{ jenkins_version }}"
-#     source: build
-#     state: present
+- name: Build Jenkins image with ansible from Dockerfile
+  docker_image:
+    build:
+      path: "{{ jenkins_docker_path }}"
+    name: "{{ jenkins_docker_image }}:{{ jenkins_version }}"
+    source: build
+    state: present
 
 - name: Ensure jenkins home dir is created
   file:

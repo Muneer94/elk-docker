@@ -195,7 +195,7 @@ jenkins_custom_plugins: []
 ###################################################
 
 # The docker hub image name
-jenkins_docker_image: "jenkins/jenkins"
+jenkins_docker_image: "jenkin/jenkins"
 
 # Configs specific to the "docker" method of running jenkins
 # The name of the jenkins container
