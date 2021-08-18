@@ -40,7 +40,7 @@ pipeline {
         // }
         stage('Testing') {
             tools {
-                docker "docker"
+                dockerTool "docker"
             }
             agent {
                 docker { image 'selenium/standalone-chrome' }
