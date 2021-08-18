@@ -44,13 +44,13 @@ pipeline {
             }
             steps {
                 script {
-                    dir("tests") {
+                    dir("tests/integration/tests") {
                         def dockerHome = tool "docker";
                         docker.image("selenium/standalone-chrome:new").inside {
                             // sh "python3 -m venv venv/"
                             // sh ". venv/bin/activate"
                             // sh "pip3 install -r requirements.txt"
-                            sh "pytest integration/tests/test_basic_integration.py" 
+                            sh "pytest test_basic_integration.py"
                         }
                     }
                 }
