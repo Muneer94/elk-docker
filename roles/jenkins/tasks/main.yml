@@ -53,6 +53,9 @@
 #     seconds: 45
 #   when: container_result|changed
 
+- name: Make sure Jenkins is responding on the configured port.
+  wait_for: port={{ jenkins_port }} delay=3 timeout=300
+
 - name: Install plugins without an API token
   jenkins_plugin:
     name: "{{ item }}"
