@@ -49,8 +49,9 @@ pipeline {
                     docker.image("selenium/standalone-chrome").inside {
                         // sh "python3 -m venv venv/"
                         // sh ". venv/bin/activate"
-                        sh "pip3 install -r requirements.txt"
-                        sh "pytest tests/tests/test_basic_integration.py"
+                        sh "whoami"
+                        // sh "pip3 install -r requirements.txt"
+                        // sh "pytest tests/tests/test_basic_integration.py"
                     }
                 }
             }
