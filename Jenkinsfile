@@ -38,6 +38,14 @@ pipeline {
         //         waitForQualityGate webhookSecretId: 'sonarqube', abortPipeline: true
         //     }
         // }
+        stage('Tests') {
+            agent {
+                docker { image 'selenium/standalone-chrome' }
+            }
+            steps {
+                sh 'python3 --version'
+            }
+        }
         stage('ElasticSearch') {
             when {
                 anyOf {
