@@ -52,7 +52,7 @@ pipeline {
                     docker.image("selenium/standalone-chrome").inside {
                         sh "python3 --version"
                     }
-                    docker.reuseNode(true)
+                }
             }
         }
         //     steps {
