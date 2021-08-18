@@ -39,26 +39,26 @@ pipeline {
         //     }
         // }
         stage('Testing') {
-            // tools {
-            //     dockerTool "docker"
-            // }
-            // steps {
-            //     script {
-            //         def dockerHome = tool "docker";
-            //         sh "echo ${dockerHome}"
-            //         docker.image("selenium/standalone-chrome").inside {
-            //             sh "python3 --version"
-            //         }
-            //     }
-            // }
+            tools {
+                dockerTool "docker"
+            }
             steps {
                 script {
-                    sh "python3 -m venv venv/"
-                    sh ". venv/bin/activate"
-                    sh "pip3 install -r requirements.txt"
-                    sh "pytest tests/tests/test_basic_integration.py"
+                    def dockerHome = tool "docker";
+                    sh "echo ${dockerHome}"
+                    docker.image("selenium/standalone-chrome").inside {
+                        sh "python3 --version"
+                    }
                 }
             }
+            // steps {
+            //     script {
+            //         sh "python3 -m venv venv/"
+            //         sh ". venv/bin/activate"
+            //         sh "pip3 install -r requirements.txt"
+            //         sh "pytest tests/tests/test_basic_integration.py"
+            //     }
+            // }
         }
         stage('ElasticSearch') {
             when {
