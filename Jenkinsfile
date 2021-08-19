@@ -39,32 +39,12 @@ pipeline {
         //     }
         // }
         stage('Testing') {
-            // tools {
-            //     dockerTool "docker"
-            // }
-            // steps {
-            //     script {
-            //         dir("tests") {
-            //             def dockerHome = tool "docker";
-            //             docker.image("selenium/standalone-chrome:new").inside {
-            //                 sh "python3 -m venv venv/"
-            //                 sh ". venv/bin/activate"
-            //                 sh "pip3 install -r requirements.txt"
-            //                 sh "python3 test_es.py"
-            //             }
-            //         }
-            //     }
-            // }
             steps {
                 script {
                     dir("tests") {
                         sh "pip3 install -r requirements.txt"
                         sh "python3 test_es.py"
                     }
-                    // sh "python3 -m venv venv/"
-                    // sh ". venv/bin/activate"
-                    // sh "pip3 install -r requirements.txt"
-                    // sh "pytest tests/tests/test_basic_integration.py"
                 }
             }
         }
@@ -133,7 +113,7 @@ pipeline {
                 anyOf {
                     changeset "vars/**"
                     changeset "inventory/**"
-                    changeset "roles/heartbeat/**"
+                    changeset "roles/metricbeat/**"
                 }
             }
             steps {
