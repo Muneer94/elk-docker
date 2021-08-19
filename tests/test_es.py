@@ -23,7 +23,7 @@ print("Testing Elasticsearch Create/Search/Bulk Operations")
 def esOperations(index_name="test-index"):
     doc = {
         'author': 'muneer',
-        'text': 'Testing Elasticsearch Create and Search Operations.',
+        'text': 'Elastic Stack',
         'timestamp': datetime.now(),
     }
     res = es.index(index="index_name", id=1, body=doc)
