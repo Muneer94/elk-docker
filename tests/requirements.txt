@@ -1,2 +1,2 @@
-python-logstash
-elasticsearch
+python-logstash==0.4.6
+elasticsearch==7.14.0
