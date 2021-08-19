@@ -57,9 +57,10 @@ pipeline {
             // }
             steps {
                 script {
-                    dir("tests")
-                    sh "pip3 install -r requirements.txt"
-                    sh "python3 test_es.py"
+                    dir("tests") {
+                        sh "pip3 install -r requirements.txt"
+                        sh "python3 test_es.py"
+                    }
                     // sh "python3 -m venv venv/"
                     // sh ". venv/bin/activate"
                     // sh "pip3 install -r requirements.txt"
