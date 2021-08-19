@@ -1,10 +1,6 @@
 server_name: localhost
 network_name: esnet
 
-nginx_image: nginx:1.15-alpine
-nginx_hostname: ng01
-nginx_conf_dir: /usr/share/nginx
-
 elasticsearch_image: docker.elastic.co/elasticsearch/elasticsearch:7.4.0
 elasticsearch_hostname: es01
 elasticsearch_conf_dir: /usr/share/elasticsearch
@@ -42,15 +38,6 @@ filebeat_image: docker.elastic.co/beats/filebeat:7.4.0
 filebeat_hostname: fb01
 filebeat_servername: status.example.com
 filebeat_conf_dir: /usr/share/filebeat
-
-heartbeatwatcher_image: nexus.example.com:4043/heartbeat-watcher:1.0.1
-heartbeatwatcher_hostname: "hw01"
-heartbeatwatcher_conf_dir: /usr/share/heartbeatwatcher
-heartbeatwatcher_smtp_host: "login.example.com"
-heartbeatwatcher_smtp_username: "status@example.com"
-heartbeatwatcher_smtp_password: "{{ vault_heartbeatwatcher_smtp_password }}"
-heartbeatwatcher_mail_to: "contact@example.com"
-heartbeatwatcher_mail_from: "status@example.com"
 
 jenkins_docker_path: "/tmp"
 jenkins_version: "2.289.3-work"  # The exact version of jenkins to deploy

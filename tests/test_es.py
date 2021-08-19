@@ -1,4 +1,4 @@
-# Usage: python test_es.py accounts.json
+# Usage: python3 test_es.py
 from os import name
 import sys, json, logging, pytest, logstash
 from logging import StreamHandler

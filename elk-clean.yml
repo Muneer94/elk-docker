@@ -1,4 +1,0 @@
-- hosts: server1
-  become: true
-  roles:
-  - clean

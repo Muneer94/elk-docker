@@ -20,19 +20,19 @@ pipeline {
                 }
             }
         }
-        // stage('Quality Check') {
-        //     tools {
-        //         jdk "jdk11" // the name you have given the JDK installation in Global Tool Configuration
-        //     }
-        //     steps {
-        //         script {
-        //             def scannerHome = tool "sonar";
-        //             withSonarQubeEnv(credentialsId: "sonarqube") {
-        //                 sh "${scannerHome}/bin/sonar-scanner"
-        //             }
-        //         }
-        //     }
-        // }
+        stage('Quality Check') {
+            tools {
+                jdk "jdk11" // the name you have given the JDK installation in Global Tool Configuration
+            }
+            steps {
+                script {
+                    def scannerHome = tool "sonar";
+                    withSonarQubeEnv(credentialsId: "sonarqube") {
+                        sh "${scannerHome}/bin/sonar-scanner"
+                    }
+                }
+            }
+        }
         // stage("Quality gate") {
         //     steps {
         //         waitForQualityGate webhookSecretId: 'sonarqube', abortPipeline: true
@@ -126,6 +126,18 @@ pipeline {
             }
             steps {
                 ansiblePlaybook colorized: true, installation: "Ansible", credentialsId: "${env.CRED_ID}", inventory: "${env.INVENTORY_PATH}", playbook: "elk.yml",tags: "heartbeat"
+            }
+        }
+        stage('Metricbeat') {
+            when {
+                anyOf {
+                    changeset "vars/**"
+                    changeset "inventory/**"
+                    changeset "roles/heartbeat/**"
+                }
+            }
+            steps {
+                ansiblePlaybook colorized: true, installation: "Ansible", credentialsId: "${env.CRED_ID}", inventory: "${env.INVENTORY_PATH}", playbook: "elk.yml",tags: "metricbeat"
             }
         }
     }

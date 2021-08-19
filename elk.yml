@@ -12,7 +12,5 @@
   - { role: heartbeat, tags: ["heartbeat"] }
   - { role: filebeat, tags: ["filebeat"] }
   - { role: metricbeat, tags: ["metricbeat"] }
-  - { role: nginx, tags: ["nginx"] }
-  - { role: heartbeat-watcher, tags: ["heartbeat-watcher"] }
   - { role: jenkins, tags: ["jenkins"] }
   - { role: sonarqube, tags: ["sonarqube"] }
