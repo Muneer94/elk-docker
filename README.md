@@ -8,11 +8,13 @@ Ansible playbook to deploy elk stack
 Roles:
 * docker - Install docker and python3-docker packages and checks if docker daemon is up and running
 * elasticsearch - Deploys elasticsearch container
-* kibana - Deploys Kibana container
-* logstash - Deploys Logstash container
+* kibana - Deploys kibana container
+* logstash - Deploys logstash container
 * heartbeat - Deploys uptime metric container
 * metricbeat - Deploys container that collects host system metrics
 * filebeat - Deploys container that forwards log files
+* jenkins - Deploys jenkins container for continuous integration and deployment
+* sonarqube - Deploys sonarqube container for code analysis
 
 ## Deployment
 
