@@ -16,7 +16,7 @@ pipeline {
         stage('Lint Code') {
             steps {
                 script {
-                    sh "ansible-lint -vvv elk.yml"
+                    sh "ansible-lint elk.yml"
                 }
             }
         }
@@ -33,11 +33,6 @@ pipeline {
                 }
             }
         }
-        // stage("Quality gate") {
-        //     steps {
-        //         waitForQualityGate webhookSecretId: 'sonarqube', abortPipeline: true
-        //     }
-        // }
         stage('Testing') {
             steps {
                 script {
