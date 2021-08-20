@@ -1,7 +1,7 @@
 
 # ELK Stack Automation Design
 
-![](images/design.svg)
+![](images/design.png)
 
 Deploy ELK stack with Ansible Docker and monitor the Docker deployment itself.
 
