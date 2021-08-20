@@ -16,7 +16,7 @@ pipeline {
         stage('Lint Code') {
             steps {
                 script {
-                    sh "ansible-lint -vvv elk.yml" 
+                    sh "ansible-lint -vvv elk.yml"
                 }
             }
         }
