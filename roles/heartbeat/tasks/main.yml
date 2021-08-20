@@ -7,7 +7,6 @@
 
 - name: Copy heartbeat conf
   template: src={{ item.src }} dest={{ item.dest }}
-  mode: 0640
   with_items:
     - { src: 'templates/heartbeat.yml', dest: '{{ heartbeat_conf_dir }}/heartbeat.yml' }
   notify: Restart heartbeat container
