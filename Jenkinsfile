@@ -38,7 +38,7 @@ pipeline {
                 script {
                     dir("tests") {
                         sh "pip3 install -r requirements.txt"
-                        sh "python3 test_es.py" 
+                        sh "python3 test_es.py"
                     }
                 }
             }
